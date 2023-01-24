@@ -1,0 +1,51 @@
+<meta charset="utf-8">
+<!DOCTYPE html>
+
+<html>
+
+<head>
+   <h1>Canvas</h1>
+   <h3>Uso de un 2D Canvas para Dibujar y Crear Patrones o Gráficos en HTML con Java Script</h3>
+</head>
+
+<body>
+   <canvas id="Prueba" width="600" height="400"></canvas>
+
+   <script>
+      function disennarCircunferencia(x, y, radio) {
+         pincel.fillStyle = "blue";
+         pincel.beginPath();
+         pincel.arc(x, y, radio, 0, 2 * Math.PI);
+         pincel.fill();
+      }
+
+      function actualizarPantalla() {
+         pincel.clearRect(0, 0, 600, 400);
+         if (contador > 600) {
+            sentido = -1;
+         }
+
+         else if (contador < 0) {
+            sentido = 1;
+            posicion += 20;
+            if (posicion == 400) {
+               posicion = 20;
+            }
+         }
+
+         disennarCircunferencia(contador, posicion, 10);
+         contador = contador + sentido;
+      }
+
+      var pantalla = document.getElementById("Prueba");
+      var pincel = pantalla.getContext("2d");
+      var contador = 0;
+      var posicion = 20;
+      sentido = 1;
+      pincel.fillStyle = "lightgray";
+      pincel.fillRect(0, 0, 600, 400);
+      setInterval(actualizarPantalla, 10);
+   </script>
+</body>
+
+</html>

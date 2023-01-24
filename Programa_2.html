@@ -1,0 +1,110 @@
+<meta charset="utf-8">
+<!DOCTYPE html>
+
+<html>
+
+<head>
+   <h1>Canvas</h1>
+   <h3>Uso de un 2D Canvas para Dibujar y Crear Patrones o Gráficos en HTML con Java Script</h3>
+</head>
+
+<body>
+   <canvas id="Prueba" width="600" height="400"></canvas>
+   <br><br><br><br><br>
+   <canvas id="Flor" width="600" height="400"></canvas>
+   <br><br><br><br><br>
+   <canvas id="Grafico" width="600" height="400"></canvas>
+
+   <script>
+
+      function dibujar(x, y, color) {
+         var pantalla = document.getElementById("Prueba");
+         var pincel = pantalla.getContext("2d");
+
+         pincel.fillStyle = color;
+         pincel.fillRect(x, y, 50, 50);
+         pincel.strokeStyle = "black";
+         pincel.strokeRect(x, y, 50, 50);
+      }
+
+      function dibujarCirculo(x, y, radio, color) {
+
+         pluma.fillStyle = color;
+         pluma.beginPath();
+         pluma.arc(x, y, radio, 0, 2 * 3.14);
+         pluma.fill();
+      }
+      function dibujarFlor(x, y) {
+         dibujarCirculo(x + 15, y + 15, 10, colores[0]);
+         dibujarCirculo(x + 15, y - 15, 10, colores[1]);
+         dibujarCirculo(x - 15, y - 15, 10, colores[2]);
+         dibujarCirculo(x - 15, y + 15, 10, colores[3]);
+         dibujarCirculo(x, y, 10, "white");
+         dibujarCirculo(x, y + 20, 10, colores[4]);
+         dibujarCirculo(x, y - 20, 10, colores[5]);
+         dibujarCirculo(x - 20, y, 10, colores[6]);
+         dibujarCirculo(x + 20, y, 10, colores[7]);
+      }
+
+      function dibujarRectangulo(x, y, base, altura, color) {
+         var pantalla = document.getElementById("Grafico");
+         var lapiz = pantalla.getContext("2d");
+
+         lapiz.fillStyle = color;
+         lapiz.fillRect(x, y, base, altura);
+         lapiz.strokeStyle = "black";
+         lapiz.strokeRect(x, y, base, altura);
+      }
+
+      function escribirTexto(x, y, texto) {
+         var pantalla = document.getElementById("Grafico");
+         var lapiz = pantalla.getContext("2d");
+
+         lapiz.font = "15px Georgia";
+         lapiz.fillStyle = "black";
+         lapiz.fillText(texto, x, y);
+      }
+
+      function dibujarBarra(x, y, serie, colores, texto) {
+
+         escribirTexto(x, y - 10, texto);
+
+         var sumaAltura = 0;
+         for (var i = 0; i < serie.length; i++) {
+            var altura = serie[i];
+            dibujarRectangulo(x, y + sumaAltura, 50, altura, colores[i]);
+            sumaAltura = sumaAltura + altura;
+         }
+      }
+
+      var colores = ["#40ffdc", "#00a9d4", "#2b4c7e", "#1c3166", "#473469", "#55024a", "#240047", "#1c0021"];
+      var x = 0;
+      var y = 0;
+      var contador = 0;
+      while (y < 400) {
+         while (x < 600) {
+            dibujar(x, y, colores[contador]);
+            x += 50;
+         }
+         x = 0;
+         y += 50;
+         contador++;
+      }
+
+      var pantalla = document.getElementById("Flor");
+      var pluma = pantalla.getContext("2d");
+      pluma.fillStyle = "lightgray";
+      pluma.fillRect(0, 0, 600, 400);
+
+      dibujarFlor(300, 200);
+
+
+      var serie2009 = [6, 47, 41, 3, 3];
+      var serie2019 = [81, 9, 3, 3, 4];
+
+      dibujarBarra(50, 50, serie2009, colores, "2009");
+      dibujarBarra(150, 50, serie2019, colores, "2019");
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<meta charset="utf-8">
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <h1>Canvas</h1>
+    <h3>Uso de un 2D Canvas para Dibujar y Crear Patrones o Gráficos en HTML con Javva Script</h3>
+</head>
+
+<body>
+    <canvas id="Prueba" width="600" height="400"> </canvas>
+    <br><br><br><br><br>
+    <canvas id="Creeper" width="600" height="400"> </canvas>
+    <br><br><br><br><br>
+    <canvas id="Escuadra" width="600" height="400"> </canvas>
+    <script>
+        var pantalla = document.getElementById("Prueba");
+        var pincel = pantalla.getContext("2d");
+        pincel.fillStyle = "green";
+        pincel.fillRect(0, 0, 600, 400);
+
+        pincel.fillStyle = "#D3D3D3";
+        pincel.fillRect(200, 0, 600, 400);
+
+        pincel.fillStyle = "red";
+        pincel.fillRect(400, 0, 600, 400);
+
+        pincel.fillStyle = "yellow";
+        pincel.beginPath();
+        pincel.moveTo(300, 200);
+        pincel.lineTo(200, 400);
+        pincel.lineTo(400, 400);
+        pincel.fill();
+
+        pincel.fillStyle = "blue";
+        pincel.beginPath();
+        pincel.arc(300, 200, 50, 0, 2 * 3.1416);
+        pincel.fill();
+
+
+        var creeper = document.getElementById("Creeper");
+        var pluma = creeper.getContext("2d");
+
+        pluma.fillStyle = "#D3D3D3";
+        pluma.fillRect(0, 0, 600, 400);
+
+        pluma.fillStyle = "darkgreen";
+        //Cabeza.
+        pluma.fillRect(120, 50, 350, 300);
+
+        pluma.fillStyle = "black";
+        //Ojos.
+        pluma.fillRect(170, 100, 90, 90);
+        pluma.fillRect(330, 100, 90, 90);
+        //Nariz.
+        pluma.fillRect(260, 190, 70, 100);
+        //Boca.
+        pluma.fillRect(220, 240, 40, 110);
+        pluma.fillRect(330, 240, 40, 110);
+
+        var escuadra = document.getElementById("Escuadra");
+        var lapiz = escuadra.getContext("2d");
+
+        lapiz.fillStyle = "#D3D3D3";
+        lapiz.fillRect(0, 0, 600, 400);
+
+        lapiz.fillStyle = "black";
+        lapiz.beginPath();
+        lapiz.moveTo(0, 0);
+        lapiz.lineTo(0, 400);
+        lapiz.lineTo(400, 400);
+        lapiz.fill();
+
+        lapiz.fillStyle = "white";
+        lapiz.beginPath();
+        lapiz.moveTo(50, 125);
+        lapiz.lineTo(50, 350);
+        lapiz.lineTo(275, 350);
+        lapiz.fill();
+
+        lapiz.fillStyle = "green";
+        lapiz.beginPath();
+        lapiz.moveTo(200, 0);
+        lapiz.lineTo(600, 0);
+        lapiz.lineTo(600, 400);
+        lapiz.fill();
+
+        lapiz.fillStyle = "white";
+        lapiz.beginPath();
+        lapiz.moveTo(325, 50);
+        lapiz.lineTo(550, 50);
+        lapiz.lineTo(550, 275);
+        lapiz.fill();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<meta charset="utf-8">
+<!DOCTYPE html>
+
+<html>
+
+<head>
+   <h1>Canvas</h1>
+   <h3>Uso de un 2D Canvas para Dibujar y Crear Patrones o Gráficos en HTML con Java Script</h3>
+</head>
+
+<body>
+   <canvas id="Prueba" width="600" height="400"></canvas>
+
+   <script>
+      function disennarCircunferencia(x, y, radio, color) {
+         pincel.fillStyle = color;
+         pincel.beginPath();
+         pincel.arc(x, y, radio, 0, 2 * Math.PI);
+         pincel.fill();
+      }
+
+      function actualizarPantalla() {
+         pincel.clearRect(0, 0, 600, 400);
+         xAleatorio = sortearPosicion(600);
+         yAleatorio = sortearPosicion(400);
+         disennarObjetivo(xAleatorio, yAleatorio);
+      }
+
+      function disennarObjetivo(x, y) {
+         disennarCircunferencia(x, y, radio + 20, "red");
+         disennarCircunferencia(x, y, radio + 10, "white");
+         disennarCircunferencia(x, y, radio, "red");
+      }
+
+      function sortearPosicion(maximo) {
+         var posicion = Math.floor(Math.random() * maximo);
+         return posicion;
+      }
+
+      function disparar(evento) {
+         var x = evento.pageX - pantalla.offsetLeft;
+         var y = evento.pageY - pantalla.offsetTop;
+         if ((x < xAleatorio + radio) && (x > xAleatorio - radio) && (y < yAleatorio + radio) && (y > yAleatorio - 10)) {
+            alert("Le diste al Blanco");
+         }
+      }
+
+      var pantalla = document.getElementById("Prueba");
+      var pincel = pantalla.getContext("2d");
+      var contador = 0;
+      var radio = 10;
+      var xAleatorio;
+      var yAleatorio;
+      pincel.fillStyle = "lightgray";
+      pincel.fillRect(0, 0, 600, 400);
+      setInterval(actualizarPantalla, 1000);
+      pantalla.onclick = disparar;
+   </script>
+</body>
+
+</html>
